@@ -303,7 +303,7 @@ int lssdp_socket_read(lssdp_ctx * lssdp) {
     socklen_t address_len = sizeof(struct sockaddr_in);
     lssdp_packet packet = {0};
 
-    ssize_t recv_len = recvfrom(lssdp->sock, buffer, sizeof(buffer), 0, (struct sockaddr *)&address, &address_len);
+    size_t recv_len = recvfrom(lssdp->sock, buffer, sizeof(buffer), 0, (struct sockaddr *)&address, &address_len);
     if (recv_len == -1) {
         rt_thread_mdelay(2000);
         lssdp_error("recvfrom fd %d failed, errno = %s (%d)\n", lssdp->sock, strerror(errno), errno);
